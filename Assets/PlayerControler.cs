@@ -12,6 +12,7 @@ public class PlayerControler : MonoBehaviour
     // Déclaration des variables
     bool _Grounded { get; set; }
     bool _Flipped { get; set; }
+    bool _HasBow { get; set; }
     Animator _Anim { get; set; }
     Rigidbody _Rb { get; set; }
     Camera _MainCamera { get; set; }
@@ -25,6 +26,9 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField]
     LayerMask WhatIsGround;
+
+    [SerializeField]
+    GameObject Bow;
 
     // Awake se produit avait le Start. Il peut être bien de régler les références dans cette section.
     void Awake()
@@ -104,5 +108,11 @@ public class PlayerControler : MonoBehaviour
             _Grounded = true;
             _Anim.SetBool("Grounded", _Grounded);
         }
+    }
+
+    public void PickupBow()
+    {
+        _HasBow = true;
+        Bow.SetActive(true);
     }
 }
