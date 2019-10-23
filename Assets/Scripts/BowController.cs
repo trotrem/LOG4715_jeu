@@ -19,12 +19,17 @@ public class BowController : MonoBehaviour {
     [SerializeField]
     float minAngleUnderHorizon = 30;
 
+    [SerializeField]
+    GameObject ArrowSelectionGUI;
+
+    ArrowType selectedArrow = ArrowType.NORMAL;
     float timer = 0f;
     bool isHoldingMouse;
 	// Use this for initialization
 	void Start () {
-		
-	}
+        ArrowSelectionGUI.SetActive(true);
+        ArrowSelectionGUI.GetComponent<ArrowSelectionGUI>().Select(selectedArrow);
+    }
 	
 	// Update is called once per frame
 	void Update () {
@@ -41,6 +46,13 @@ public class BowController : MonoBehaviour {
         {
             ShootArrow();
             isHoldingMouse = false;
+        }
+
+        float scroll = Input.mouseScrollDelta.y;
+        if (scroll != 0)
+        {
+            selectedArrow = (ArrowType) (((int) selectedArrow + Mathf.FloorToInt(scroll) + 3) % 3);
+            ArrowSelectionGUI.GetComponent<ArrowSelectionGUI>().Select(selectedArrow);
         }
     }
 
