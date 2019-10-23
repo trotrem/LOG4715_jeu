@@ -5,37 +5,31 @@ using UnityEngine;
 public class ArrowScript : MonoBehaviour {
 
     [SerializeField]
-    float speed = 10f;
+    float maxForce = 100000f;
 
     float h;
     float k;
     float a;
 
     float u = 0;
-    Vector3 startPos;
+    Vector3 initialRot;
 
     bool initialized = false;
 
+    Rigidbody rigidBody;
+
 	// Use this for initialization
 	void Start () {
-		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (initialized)
-        {
-            u += Time.deltaTime * speed;
-            transform.position = new Vector3(0f, a * Mathf.Pow(u - h, 2) + k + startPos.y, u + startPos.z);
-        }
+        transform.rotation = Quaternion.FromToRotation(new Vector3(0,1,0), rigidBody.velocity);
 	}
 
-    public void Shoot(Vector3 startPos, Vector3 trajectoryTop)
+    public void Shoot(Vector3 startPos, Vector3 trajectoryTop, float forcePercentage)
     {
-        this.startPos = startPos;
-        h = trajectoryTop.z - startPos.z;
-        k = trajectoryTop.y - startPos .y;
-        a = (- k) / Mathf.Pow(- h, 2);
-        initialized = true;
+        rigidBody = GetComponent<Rigidbody>();
+        rigidBody.AddForce(Vector3.Normalize(trajectoryTop - startPos) * maxForce * forcePercentage);
     }
 }
