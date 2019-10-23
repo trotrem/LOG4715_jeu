@@ -16,7 +16,8 @@ public class PlayerControler : MonoBehaviour
     Animator _Anim { get; set; }
     Rigidbody _Rb { get; set; }
     Camera _MainCamera { get; set; }
-
+    bool alive;
+    GameObject[] finishObjects;
     // Valeurs exposées
     [SerializeField]
     float MoveSpeed = 5.0f;
@@ -29,6 +30,12 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField]
     GameObject Bow;
+
+    [SerializeField]
+    int Lives = 3;
+
+    [SerializeField]
+    Vector3 SpawnLocation = new Vector3(0.001208663f, -0.5198455f, 0.2488693f);
 
     // Awake se produit avait le Start. Il peut être bien de régler les références dans cette section.
     void Awake()
@@ -43,6 +50,10 @@ public class PlayerControler : MonoBehaviour
     {
         _Grounded = false;
         _Flipped = false;
+        alive = true;
+
+        finishObjects = GameObject.FindGameObjectsWithTag("Finish");
+        hideGameOver();
     }
 
     // Vérifie les entrées de commandes du joueur
@@ -101,7 +112,7 @@ public class PlayerControler : MonoBehaviour
         // On s'assure de bien être en contact avec le sol
         if ((WhatIsGround & (1 << coll.gameObject.layer)) == 0)
             return;
-
+        
         // Évite une collision avec le plafond
         if (coll.relativeVelocity.y > 0)
         {
@@ -114,5 +125,50 @@ public class PlayerControler : MonoBehaviour
     {
         _HasBow = true;
         Bow.SetActive(true);
+    }
+
+    void OnTriggerEnter(Collider ennemi)
+    {
+        //checks other collider's tag
+        if (ennemi.gameObject.tag == "Ennemi")
+        {
+            HitEnemy();
+        }
+    }
+
+        public void HitEnemy()
+    {
+        if(Lives >= 1)
+        {
+            Respawn();
+        }
+        else
+        {
+            alive = false;
+            Time.timeScale = 0f;
+            showGameOver();
+        }
+    }
+
+    public void Respawn()
+    {
+        Lives--;
+        transform.position = SpawnLocation;
+    }
+
+    public void hideGameOver()
+    {
+        foreach (GameObject g in finishObjects)
+        {
+            g.SetActive(false);
+        }
+    }
+
+    public void showGameOver()
+    {
+        foreach (GameObject g in finishObjects)
+        {
+            g.SetActive(true);
+        }
     }
 }
