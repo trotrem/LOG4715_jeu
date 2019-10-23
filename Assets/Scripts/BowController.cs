@@ -16,6 +16,11 @@ public class BowController : MonoBehaviour {
     [SerializeField]
     Transform ProjectileParent;
 
+    [SerializeField]
+    float maxHoldTime = 0.5f;
+
+    float timer = 0f;
+    bool isHoldingMouse;
 	// Use this for initialization
 	void Start () {
 		
@@ -25,7 +30,16 @@ public class BowController : MonoBehaviour {
 	void Update () {
         if (Input.GetMouseButtonDown(0))
         {
+            isHoldingMouse = true;
+        }
+        if (isHoldingMouse)
+        {
+            timer += Time.deltaTime;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
             ShootArrow();
+            isHoldingMouse = false;
         }
 	}
 
@@ -34,11 +48,13 @@ public class BowController : MonoBehaviour {
         var arrow = Instantiate(ArrowPrefab, ArrowSpawnPoint.position, Quaternion.Euler(90, 0, 0), ProjectileParent);
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        float shootingForcePercentage = Mathf.Clamp(Mathf.Lerp(0, 1, timer/maxHoldTime), 0.02f, 1);
+        timer = 0;
         if (Physics.Raycast(ray, out hit, 100.0f))
         {
             var point = new Vector3(0f, hit.point.y, hit.point.z);
-            arrow.GetComponent<ArrowScript>().Shoot(ArrowSpawnPoint.position, point);
-            Debug.Log(point);
+            arrow.GetComponent<ArrowScript>().Shoot(ArrowSpawnPoint.position, point, shootingForcePercentage);
+            Debug.Log(shootingForcePercentage);
         }
         else
         {

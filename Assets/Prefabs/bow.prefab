@@ -9,16 +9,16 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1825560512117822}
+  m_RootGameObject: {fileID: 1632467137453442}
   m_IsPrefabParent: 1
---- !u!1 &1039927426607688
+--- !u!1 &1281450370424108
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4025880278325598}
+  - component: {fileID: 4432822167585114}
   m_Layer: 0
   m_Name: ArrowSource
   m_TagString: Untagged
@@ -26,56 +26,57 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!1 &1825560512117822
+--- !u!1 &1632467137453442
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
-  - component: {fileID: 4435104114551280}
-  - component: {fileID: 33172212469937736}
-  - component: {fileID: 23355198360608042}
+  - component: {fileID: 4326999962057672}
+  - component: {fileID: 33546768053269564}
+  - component: {fileID: 23198735031828126}
+  - component: {fileID: 114737465890916138}
   m_Layer: 0
   m_Name: bow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &4025880278325598
+  m_IsActive: 0
+--- !u!4 &4326999962057672
 Transform:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1039927426607688}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0005, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 4435104114551280}
-  m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &4435104114551280
-Transform:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1825560512117822}
+  m_GameObject: {fileID: 1632467137453442}
   m_LocalRotation: {x: -0.5, y: 0.5, z: 0.5, w: 0.5}
   m_LocalPosition: {x: -0.001208663, y: 0.8058455, z: 0.42013073}
   m_LocalScale: {x: 100, y: 100.00006, z: 100.00006}
   m_Children:
-  - {fileID: 4025880278325598}
+  - {fileID: 4432822167585114}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: -90, y: 90, z: 0}
---- !u!23 &23355198360608042
+--- !u!4 &4432822167585114
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1281450370424108}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.0005, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4326999962057672}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23198735031828126
 MeshRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1825560512117822}
+  m_GameObject: {fileID: 1632467137453442}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -104,10 +105,27 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!33 &33172212469937736
+--- !u!33 &33546768053269564
 MeshFilter:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1825560512117822}
+  m_GameObject: {fileID: 1632467137453442}
   m_Mesh: {fileID: 4300000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
+--- !u!114 &114737465890916138
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1632467137453442}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4abe9f4f49e59ff4ea5c028b98af48d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ArrowSpawnPoint: {fileID: 4432822167585114}
+  ArrowPrefab: {fileID: 1348447679769852, guid: b43d1a52a85760741a83c28446898b4f,
+    type: 2}
+  BowAxisCenter: {fileID: 0}
+  ProjectileParent: {fileID: 0}
+  maxHoldTime: 0.2
