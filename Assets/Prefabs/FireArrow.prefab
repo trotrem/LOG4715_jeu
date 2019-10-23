@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 114394046412926908}
   - component: {fileID: 54201137788527238}
   m_Layer: 0
-  m_Name: Arrow
+  m_Name: FireArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -30,7 +30,7 @@ Transform:
   m_GameObject: {fileID: 1348447679769852}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
   m_LocalPosition: {x: -0.001208663, y: 1.648251, z: 2.099}
-  m_LocalScale: {x: 0.04, y: 0.6, z: 0.04}
+  m_LocalScale: {x: 0.02, y: 0.3, z: 0.02}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -74,7 +74,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 9e960532343af9e4ca2a30d6f7cf0802, type: 2}
+  - {fileID: 2100000, guid: 2120b318a855db4458c4c7db94794d04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
