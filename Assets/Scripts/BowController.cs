@@ -5,7 +5,10 @@ using UnityEngine;
 public class BowController : MonoBehaviour {
 
     [SerializeField]
-    GameObject ArrowPrefab;
+    GameObject NormalArrowPrefab;
+
+    [SerializeField]
+    GameObject FireArrowPrefab;
 
     [SerializeField]
     Transform ProjectileParent;
@@ -77,19 +80,28 @@ public class BowController : MonoBehaviour {
 
     void ShootArrow()
     {
-        var arrow = Instantiate(ArrowPrefab, transform.position, Quaternion.Euler(90, 0, 0), ProjectileParent);
-        RaycastHit hit;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        float shootingForcePercentage = Mathf.Clamp(Mathf.Lerp(0, 1, timer/maxHoldTime), 0.02f, 1);
-        timer = 0;
-        if (Physics.Raycast(ray, out hit, 100.0f, WhatIsInvisibleWall))
+        if (selectedArrow != ArrowType.WIND)
         {
-            var point = new Vector3(0f, hit.point.y, hit.point.z);
-            arrow.GetComponent<ArrowScript>().Shoot(transform.position, point, shootingForcePercentage);
-        }
-        else
+            var arrow = Instantiate(
+                selectedArrow == ArrowType.NORMAL ? NormalArrowPrefab : FireArrowPrefab,
+                transform.position, Quaternion.Euler(90, 0, 0), ProjectileParent
+                );
+            RaycastHit hit;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            float shootingForcePercentage = Mathf.Clamp(Mathf.Lerp(0, 1, timer / maxHoldTime), 0.02f, 1);
+            timer = 0;
+            if (Physics.Raycast(ray, out hit, 100.0f, WhatIsInvisibleWall))
+            {
+                var point = new Vector3(0f, hit.point.y, hit.point.z);
+                arrow.GetComponent<ArrowScript>().Shoot(transform.position, point, shootingForcePercentage);
+            }
+            else
+            {
+                Debug.Log("t'as cliqué dans le vide t'es bad!");
+            }
+        } else
         {
-            Debug.Log("t'as cliqué dans le vide t'es bad!");
+            transform.GetComponent<ParticleSystem>().Play();
         }
         
     }
