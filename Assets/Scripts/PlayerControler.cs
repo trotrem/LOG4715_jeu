@@ -10,7 +10,7 @@ public class PlayerControler : MonoBehaviour
     private static readonly Vector3 InverseCameraPosition = new Vector3(-10, 1, 0);
 
     // Déclaration des variables
-    bool _Grounded { get; set; }
+    public bool _Grounded { get; private set; }
     bool _Flipped { get; set; }
     bool _HasBow { get; set; }
     Animator _Anim { get; set; }
@@ -56,6 +56,14 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         var horizontal = Input.GetAxis("Horizontal") * MoveSpeed;
+        if (_Grounded && horizontal == 0 && Mathf.Abs(_Rb.velocity.y) <= 0.5f)
+        {
+            _Rb.isKinematic = true;
+        }
+        else
+        {
+            _Rb.isKinematic = false;
+        }
         HorizontalMove(horizontal);
         FlipCharacter(horizontal);
         CheckJump();
@@ -76,6 +84,7 @@ public class PlayerControler : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump"))
             {
+                _Rb.isKinematic = false;
                 _Rb.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
                 _Grounded = false;
                 _Anim.SetBool("Grounded", false);

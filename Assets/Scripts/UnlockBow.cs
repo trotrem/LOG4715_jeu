@@ -16,7 +16,10 @@ public class UnlockBow : MonoBehaviour {
 
     void OnTriggerEnter(Collider c)
     {
-        c.gameObject.GetComponent<PlayerControler>().PickupBow();
-        gameObject.SetActive(false);
+        if(c.gameObject.tag == "Player")
+        {
+            c.gameObject.GetComponent<PlayerControler>().PickupBow();
+            gameObject.SetActive(false);
+        }
     }
 }

@@ -23,6 +23,8 @@ public abstract class ArrowScript : MonoBehaviour {
 
     bool initialized = false;
 
+    GameObject player;
+
     Rigidbody rigidBody;
 
 	// Use this for initialization
@@ -33,7 +35,7 @@ public abstract class ArrowScript : MonoBehaviour {
 	void Update () {
         if (rigidBody.velocity.magnitude > 0)
             transform.rotation = Quaternion.FromToRotation(new Vector3(0,1,0), rigidBody.velocity);
-	}
+    }
 
     public void Shoot(Vector3 startPos, Vector3 trajectoryTop, float forcePercentage)
     {
@@ -43,15 +45,16 @@ public abstract class ArrowScript : MonoBehaviour {
 
     protected void OnTriggerEnter(Collider coll)
     {
-        if ((WhatIsWall & (1 << coll.gameObject.layer)) != 0)
+        if ((WhatIsWall & (1 << coll.gameObject.layer)) != 0 && coll.gameObject.tag != "Arrow")
         {
             float time = Time.fixedDeltaTime;
             Vector3 velocity = rigidBody.velocity;
             transform.position = transform.position + -velocity * time;
 
-            GetComponent<BoxCollider>().isTrigger = false;
             GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
+
+        if (coll.gameObject.tag == "PlayerAura" )
 
         if ((WhatIsEnemy & (1 << coll.gameObject.layer)) != 0)
         {
