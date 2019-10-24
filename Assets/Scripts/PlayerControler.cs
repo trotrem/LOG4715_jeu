@@ -154,8 +154,6 @@ public class PlayerControler : MonoBehaviour
     {
         timeLeftUncontrolable = timeUncontrolable;
         Vector3 jumpForce = new Vector3(0f, vector.y, vector.z) * KnockbackForce * forcePercentage;
-        //_Rb.velocity = new Vector3(0, 0, 0);
-        Debug.Log(jumpForce);
         _Rb.AddForce(jumpForce, ForceMode.Impulse);
     }
 

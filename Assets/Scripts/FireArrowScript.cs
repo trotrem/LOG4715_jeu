@@ -16,11 +16,8 @@ public class FireArrowScript : ArrowScript {
     {
         if (coll.gameObject.tag == "Burnable")
         {
-            Destroy(coll.gameObject);
+            coll.transform.Find("Burnable").GetComponent<Burnable>().Burn(this);
         }
-        else
-        {
-            base.OnTriggerEnter(coll);
-        }
+        base.OnTriggerEnter(coll);
     }
 }

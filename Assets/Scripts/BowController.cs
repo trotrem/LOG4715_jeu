@@ -139,7 +139,6 @@ public class BowController : MonoBehaviour {
                 Vector3 mousePosition = new Vector3(0f, direction.point.y, direction.point.z);
                 Vector3 playerPosition = new Vector3(0f, transform.parent.parent.position.y, transform.parent.parent.position.z);
                 Vector3 vector = transform.parent.position - mousePosition;
-                Debug.Log(vector);
                 playerControler.knockBack(vector.normalized, shootingForcePercentage);
                 KnockBack(shootingForcePercentage);
                 transform.GetComponent<ParticleSystem>().Play();
