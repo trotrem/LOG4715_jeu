@@ -9,6 +9,7 @@ public class Overlord : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         Physics.gravity = new Vector3(0, gravity, 0);
+        Time.
 	}
 	
 	// Update is called once per frame
