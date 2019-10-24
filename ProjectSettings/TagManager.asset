@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ennemi
   - Arrow
+  - Burnable
   layers:
   - Default
   - TransparentFX

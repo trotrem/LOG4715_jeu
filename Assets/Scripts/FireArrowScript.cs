@@ -12,12 +12,15 @@ public class FireArrowScript : ArrowScript {
         return 2;
     }
 
-    protected void OnTriggerEnter(Collider coll)
+    protected override void OnTriggerEnter(Collider coll)
     {
-        base.OnTriggerEnter(coll);
-        if ((WhatIsBurnable & (1 << coll.gameObject.layer)) != 0)
+        if (coll.gameObject.tag == "Burnable")
         {
-
+            Destroy(coll.gameObject);
+        }
+        else
+        {
+            base.OnTriggerEnter(coll);
         }
     }
 }
