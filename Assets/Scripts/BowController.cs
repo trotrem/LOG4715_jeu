@@ -26,6 +26,11 @@ public class BowController : MonoBehaviour {
     GameObject ArrowSelectionGUI;
 
     ArrowType selectedArrow = ArrowType.NORMAL;
+
+    Queue<GameObject> normalArrows = new Queue<GameObject>();
+    Queue<GameObject> fireArrows = new Queue<GameObject>();
+
+
     float timer = 0f;
     bool isHoldingMouse;
 	// Use this for initialization
@@ -82,7 +87,7 @@ public class BowController : MonoBehaviour {
     {
         if (selectedArrow != ArrowType.WIND)
         {
-            var arrow = Instantiate(
+            GameObject arrow = Instantiate(
                 selectedArrow == ArrowType.NORMAL ? NormalArrowPrefab : FireArrowPrefab,
                 transform.position, Quaternion.Euler(90, 0, 0), ProjectileParent
                 );
@@ -94,6 +99,19 @@ public class BowController : MonoBehaviour {
             {
                 var point = new Vector3(0f, hit.point.y, hit.point.z);
                 arrow.GetComponent<ArrowScript>().Shoot(transform.position, point, shootingForcePercentage);
+
+                if (selectedArrow == ArrowType.NORMAL)
+                {
+                    if (normalArrows.Count >= 3)
+                        Destroy(normalArrows.Dequeue());
+                    normalArrows.Enqueue(arrow);
+                }
+                else
+                {
+                    if (fireArrows.Count >= 3)
+                        Destroy(fireArrows.Dequeue());
+                    fireArrows.Enqueue(arrow);
+                }
             }
             else
             {

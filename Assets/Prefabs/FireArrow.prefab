@@ -12,11 +12,11 @@ GameObject:
   - component: {fileID: 33742874926388132}
   - component: {fileID: 136385532665380248}
   - component: {fileID: 23844295415344340}
-  - component: {fileID: 114394046412926908}
   - component: {fileID: 54201137788527238}
+  - component: {fileID: -4987362030844276308}
   m_Layer: 0
   m_Name: FireArrow
-  m_TagString: Untagged
+  m_TagString: Arrow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -29,7 +29,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1348447679769852}
   m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -0.001208663, y: 1.648251, z: 2.099}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.02, y: 0.24, z: 0.02}
   m_Children: []
   m_Father: {fileID: 0}
@@ -95,19 +95,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!114 &114394046412926908
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1348447679769852}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 57e1db076416d984abb3df4ac225b442, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxForce: 800
 --- !u!54 &54201137788527238
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -123,4 +110,26 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 3
+--- !u!114 &-4987362030844276308
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1348447679769852}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6d5c79a1372b269489591b46aba3b01a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WhatIsWall:
+    serializedVersion: 2
+    m_Bits: 256
+  WhatIsEnemy:
+    serializedVersion: 2
+    m_Bits: 1024
+  maxForce: 800
+  WhatIsBurnable:
+    serializedVersion: 2
+    m_Bits: 0

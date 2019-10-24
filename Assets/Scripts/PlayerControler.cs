@@ -10,7 +10,7 @@ public class PlayerControler : MonoBehaviour
     private static readonly Vector3 InverseCameraPosition = new Vector3(-10, 1, 0);
 
     // Déclaration des variables
-    bool _Grounded { get; set; }
+    public bool _Grounded { get; private set; }
     bool _Flipped { get; set; }
     bool _HasBow { get; set; }
     Animator _Anim { get; set; }
@@ -41,7 +41,7 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField]
     GameObject Bow;
-
+    
     // Awake se produit avait le Start. Il peut être bien de régler les références dans cette section.
     void Awake()
     {
@@ -62,6 +62,7 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         var horizontal = Input.GetAxis("Horizontal") * MoveSpeed;
+
         if(timeLeftUncontrolable > -gradualControl) 
         {
             timeLeftUncontrolable -= Time.deltaTime;
@@ -70,6 +71,15 @@ public class PlayerControler : MonoBehaviour
         {
             HorizontalMove(horizontal);
         }
+
+        if (_Grounded && horizontal == 0 && Mathf.Abs(_Rb.velocity.y) <= 0.5f)
+        {
+            _Rb.isKinematic = true;
+        }
+        else
+        {
+            _Rb.isKinematic = false;
+        }
         FlipCharacter(horizontal);
         CheckJump();
     }
@@ -77,6 +87,7 @@ public class PlayerControler : MonoBehaviour
     // Gère le mouvement horizontal
     void HorizontalMove(float horizontal)
     {
+
         float control = gradualControl == 0 ? 1f : -timeLeftUncontrolable / gradualControl;
         _Rb.velocity = new Vector3(_Rb.velocity.x, _Rb.velocity.y, (control*horizontal)+(_Rb.velocity.z*(1-control)));
         _Anim.SetFloat("MoveSpeed", Mathf.Abs(horizontal));
@@ -89,6 +100,7 @@ public class PlayerControler : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump"))
             {
+                _Rb.isKinematic = false;
                 _Rb.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
                 _Grounded = false;
                 _Anim.SetBool("Grounded", false);
@@ -103,14 +115,14 @@ public class PlayerControler : MonoBehaviour
         if (horizontal < 0 && !_Flipped)
         {
             _Flipped = true;
-            transform.Rotate(FlipRotation);
+            transform.RotateAround(transform.position, new Vector3(0,1,0), 180);
             _MainCamera.transform.Rotate(-FlipRotation);
             _MainCamera.transform.localPosition = InverseCameraPosition;
         }
         else if (horizontal > 0 && _Flipped)
         {
             _Flipped = false;
-            transform.Rotate(-FlipRotation);
+            transform.RotateAround(transform.position, new Vector3(0, 1, 0), -180);
             _MainCamera.transform.Rotate(FlipRotation);
             _MainCamera.transform.localPosition = CameraPosition;
         }
@@ -143,4 +155,5 @@ public class PlayerControler : MonoBehaviour
         Vector3 jumpForce = new Vector3(0f, vector.y, vector.z) * KnockbackForce;
         _Rb.AddForce(jumpForce, ForceMode.Impulse);
     }
+
 }

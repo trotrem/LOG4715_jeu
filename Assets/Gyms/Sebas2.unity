@@ -144,7 +144,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 106837770}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.849, z: -0.013}
+  m_LocalPosition: {x: 0, y: 0.849, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2028343931}
@@ -270,7 +270,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &307294541
 GameObject:
@@ -361,7 +361,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4889916270699016, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 4447174194096642, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
       propertyPath: m_RootOrder
@@ -546,7 +546,7 @@ Transform:
   - {fileID: 1367181177}
   - {fileID: 544727351}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &544727350
 GameObject:
@@ -746,6 +746,7 @@ MonoBehaviour:
   whatIsHurtful:
     serializedVersion: 2
     m_Bits: 1024
+  invincibilityTime: 1
 --- !u!114 &802277769
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -758,8 +759,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7be33a98c945674594bb8aeec7d33a5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bow: {fileID: 2028343930}
-  selectedArrow: 0
 --- !u!1001 &858751121
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -811,7 +810,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4506484814700052, guid: f5b7680f597eb2e418fe3ac3b94a3d2e, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 114630634888505098, guid: f5b7680f597eb2e418fe3ac3b94a3d2e,
         type: 3}
@@ -940,7 +939,7 @@ MeshRenderer:
   m_GameObject: {fileID: 947590275}
   m_Enabled: 0
   m_CastShadows: 1
-  m_ReceiveShadows: 1
+  m_ReceiveShadows: 0
   m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
@@ -948,7 +947,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10303, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -985,11 +984,11 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947590275}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.2, y: 0, z: 0}
   m_LocalScale: {x: 100, y: 100, z: 100}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!1 &995939989
 GameObject:
@@ -1105,7 +1104,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4199404233398868, guid: 6c8f0136d50cd774bb163e0942f51145, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6c8f0136d50cd774bb163e0942f51145, type: 3}
@@ -1121,6 +1120,7 @@ GameObject:
   - component: {fileID: 1110688391}
   - component: {fileID: 1110688390}
   - component: {fileID: 1110688389}
+  - component: {fileID: 1110688392}
   m_Layer: 8
   m_Name: Cube
   m_TagString: Untagged
@@ -1201,6 +1201,22 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1110688387}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!54 &1110688392
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1110688387}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 3
 --- !u!1 &1132138701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1585,7 +1601,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.0040000677
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1827,7 +1843,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4abe9f4f49e59ff4ea5c028b98af48d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NormalArrowPrefab: {fileID: 1348447679769852, guid: b43d1a52a85760741a83c28446898b4f,
+  NormalArrowPrefab: {fileID: 5756211191343809698, guid: 6a0a667915c684e49b5c120ab5d3c768,
     type: 3}
   FireArrowPrefab: {fileID: 1348447679769852, guid: ba625893f48b9274bbcff6654af43eae,
     type: 3}
