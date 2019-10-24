@@ -45,19 +45,21 @@ public abstract class ArrowScript : MonoBehaviour {
 
     protected virtual void OnTriggerEnter(Collider coll)
     {
-        if ((WhatIsWall & (1 << coll.gameObject.layer)) != 0 && coll.gameObject.tag != "Arrow")
+        if (!stuck && (WhatIsWall & (1 << coll.gameObject.layer)) != 0 && coll.gameObject.tag != "Arrow")
         {
             stuck = true;
             float time = Time.fixedDeltaTime;
             Vector3 velocity = rigidBody.velocity;
             transform.position = transform.position + -velocity * time;
             rigidBody.velocity = Vector3.zero;
-            //transform.SetParent(coll.transform, true);
+            GameObject inbetween = new GameObject();
+            inbetween.transform.SetParent(coll.transform);
+            transform.SetParent(inbetween.transform, false);
             rigidBody.useGravity = false;
             rigidBody.constraints = RigidbodyConstraints.FreezeAll;
         }
 
-        if ((WhatIsEnemy & (1 << coll.gameObject.layer)) != 0)
+        if (!stuck && (WhatIsEnemy & (1 << coll.gameObject.layer)) != 0)
         {
             int damage = getDamage();
             //TODO Damage Enemy
