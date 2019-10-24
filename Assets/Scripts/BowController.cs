@@ -101,8 +101,20 @@ public class BowController : MonoBehaviour {
             }
         } else
         {
-            transform.GetComponent<ParticleSystem>().Play();
+            RaycastHit direction;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            if (Physics.Raycast(ray, out direction, 100.0f, WhatIsInvisibleWall))
+            {
+                Vector3 mousePosition = new Vector3(0f, direction.point.y, direction.point.z);
+                Vector3 playerPosition = new Vector3(0f, transform.parent.parent.position.y, transform.parent.parent.position.z);
+                Vector3 vector = playerPosition - mousePosition;
+                transform.parent.parent.GetComponent<PlayerControler>().knockBack(vector.normalized);
+                transform.GetComponent<ParticleSystem>().Play();
+            }
+            else
+            {
+                Debug.Log("t'as cliqué dans le vide t'es bad!");
+            }
         }
-        
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ArrowScript : MonoBehaviour {
 
     [SerializeField]
-    float maxForce = 100000f;
+    protected float maxForce = 100000f;
 
     float h;
     float k;
@@ -16,7 +16,7 @@ public class ArrowScript : MonoBehaviour {
 
     bool initialized = false;
 
-    Rigidbody rigidBody;
+    protected Rigidbody rigidBody;
 
 	// Use this for initialization
 	void Start () {

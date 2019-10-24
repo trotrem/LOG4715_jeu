@@ -16,9 +16,17 @@ public class PlayerControler : MonoBehaviour
     Animator _Anim { get; set; }
     Rigidbody _Rb { get; set; }
     Camera _MainCamera { get; set; }
-    bool alive;
-    GameObject[] finishObjects;
+    float timeLeftUncontrolable;
+
     // Valeurs exposées
+    [SerializeField]
+    [Range(0,10)]
+    float timeUncontrolable = 0.25f;
+
+    [SerializeField]
+    [Range(0, 10)]
+    float gradualControl = 0.25f;
+
     [SerializeField]
     float MoveSpeed = 5.0f;
 
@@ -26,16 +34,13 @@ public class PlayerControler : MonoBehaviour
     float JumpForce = 10f;
 
     [SerializeField]
+    float KnockbackForce = 8f;
+
+    [SerializeField]
     LayerMask WhatIsGround;
 
     [SerializeField]
     GameObject Bow;
-
-    [SerializeField]
-    int Lives = 3;
-
-    [SerializeField]
-    Vector3 SpawnLocation = new Vector3(0.001208663f, -0.5198455f, 0.2488693f);
 
     // Awake se produit avait le Start. Il peut être bien de régler les références dans cette section.
     void Awake()
@@ -50,17 +55,21 @@ public class PlayerControler : MonoBehaviour
     {
         _Grounded = false;
         _Flipped = false;
-        alive = true;
-
-        finishObjects = GameObject.FindGameObjectsWithTag("Finish");
-        hideGameOver();
+        timeLeftUncontrolable = -gradualControl;
     }
 
     // Vérifie les entrées de commandes du joueur
     void Update()
     {
         var horizontal = Input.GetAxis("Horizontal") * MoveSpeed;
-        HorizontalMove(horizontal);
+        if(timeLeftUncontrolable > -gradualControl) 
+        {
+            timeLeftUncontrolable -= Time.deltaTime;
+        }
+        if(timeLeftUncontrolable <= 0)
+        {
+            HorizontalMove(horizontal);
+        }
         FlipCharacter(horizontal);
         CheckJump();
     }
@@ -68,7 +77,8 @@ public class PlayerControler : MonoBehaviour
     // Gère le mouvement horizontal
     void HorizontalMove(float horizontal)
     {
-        _Rb.velocity = new Vector3(_Rb.velocity.x, _Rb.velocity.y, horizontal);
+        float control = gradualControl == 0 ? 1f : -timeLeftUncontrolable / gradualControl;
+        _Rb.velocity = new Vector3(_Rb.velocity.x, _Rb.velocity.y, (control*horizontal)+(_Rb.velocity.z*(1-control)));
         _Anim.SetFloat("MoveSpeed", Mathf.Abs(horizontal));
     }
 
@@ -127,48 +137,10 @@ public class PlayerControler : MonoBehaviour
         Bow.SetActive(true);
     }
 
-    void OnTriggerEnter(Collider ennemi)
+    public void knockBack(Vector3 vector)
     {
-        //checks other collider's tag
-        if (ennemi.gameObject.tag == "Ennemi")
-        {
-            HitEnemy();
-        }
-    }
-
-        public void HitEnemy()
-    {
-        if(Lives >= 1)
-        {
-            Respawn();
-        }
-        else
-        {
-            alive = false;
-            Time.timeScale = 0f;
-            showGameOver();
-        }
-    }
-
-    public void Respawn()
-    {
-        Lives--;
-        transform.position = SpawnLocation;
-    }
-
-    public void hideGameOver()
-    {
-        foreach (GameObject g in finishObjects)
-        {
-            g.SetActive(false);
-        }
-    }
-
-    public void showGameOver()
-    {
-        foreach (GameObject g in finishObjects)
-        {
-            g.SetActive(true);
-        }
+        timeLeftUncontrolable = timeUncontrolable;
+        Vector3 jumpForce = new Vector3(0f, vector.y, vector.z) * KnockbackForce;
+        _Rb.AddForce(jumpForce, ForceMode.Impulse);
     }
 }
