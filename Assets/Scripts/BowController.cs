@@ -25,6 +25,18 @@ public class BowController : MonoBehaviour {
     [SerializeField]
     GameObject ArrowSelectionGUI;
 
+    [SerializeField]
+    float capsuleRadius = 1f;
+
+    [SerializeField]
+    float forceLength = 10f;
+
+    [SerializeField]
+    float KnockBackForce = 15f;
+
+    [SerializeField]
+    PlayerControler playerControler;
+
     ArrowType selectedArrow = ArrowType.NORMAL;
 
     Queue<GameObject> normalArrows = new Queue<GameObject>();
@@ -85,6 +97,8 @@ public class BowController : MonoBehaviour {
 
     void ShootArrow()
     {
+        //playerControler._Rb.isKinematic = false;
+        float shootingForcePercentage = Mathf.Clamp(Mathf.Lerp(0, 1, timer / maxHoldTime), 0.02f, 1);
         if (selectedArrow != ArrowType.WIND)
         {
             GameObject arrow = Instantiate(
@@ -93,7 +107,6 @@ public class BowController : MonoBehaviour {
                 );
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            float shootingForcePercentage = Mathf.Clamp(Mathf.Lerp(0, 1, timer / maxHoldTime), 0.02f, 1);
             timer = 0;
             if (Physics.Raycast(ray, out hit, 100.0f, WhatIsInvisibleWall))
             {
@@ -125,13 +138,37 @@ public class BowController : MonoBehaviour {
             {
                 Vector3 mousePosition = new Vector3(0f, direction.point.y, direction.point.z);
                 Vector3 playerPosition = new Vector3(0f, transform.parent.parent.position.y, transform.parent.parent.position.z);
-                Vector3 vector = playerPosition - mousePosition;
-                transform.parent.parent.GetComponent<PlayerControler>().knockBack(vector.normalized);
+                Vector3 vector = transform.parent.position - mousePosition;
+                Debug.Log(vector);
+                playerControler.knockBack(vector.normalized, shootingForcePercentage);
+                KnockBack(shootingForcePercentage);
                 transform.GetComponent<ParticleSystem>().Play();
             }
             else
             {
                 Debug.Log("t'as cliqué dans le vide t'es bad!");
+            }
+        }
+
+        void KnockBack(float forcePercentage)
+        {
+            Collider[] hitColliders = Physics.OverlapCapsule(transform.position, transform.forward*forceLength, capsuleRadius);
+            int i = 0;
+            while (i < hitColliders.Length)
+            {
+                if (hitColliders[i].gameObject.tag == "Player")
+                {
+                    i++;
+                    continue;
+                }
+                Rigidbody objectPushed;
+                hitColliders[i].TryGetComponent(out objectPushed);
+                if (objectPushed != null)
+                {
+                    Vector3 pushDirection = objectPushed.transform.position - transform.parent.position;
+                    objectPushed.AddForce(pushDirection.normalized * KnockBackForce * forcePercentage, ForceMode.Impulse);
+                }  
+                i++;
             }
         }
     }

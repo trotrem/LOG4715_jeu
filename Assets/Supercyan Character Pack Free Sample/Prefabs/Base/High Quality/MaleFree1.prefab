@@ -1497,7 +1497,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 114
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &65346096421526964
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1536,13 +1536,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3105ba9e0e5f92c418138c60dc647197, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timeUncontrolable: 0.25
+  gradualControl: 0.25
   MoveSpeed: 4
   JumpForce: 13
+  KnockbackForce: 13
   WhatIsGround:
     serializedVersion: 2
     m_Bits: 256
   Bow: {fileID: 2307781309798721946}
-  Lives: 3
 --- !u!114 &2633535517140062439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6309,6 +6311,10 @@ MonoBehaviour:
     m_Bits: 512
   minAngleUnderHorizon: 30
   ArrowSelectionGUI: {fileID: 0}
+  capsuleRadius: 1
+  forceLength: 3
+  KnockBackForce: 15
+  playerControler: {fileID: 114300015090708552}
 --- !u!1 &4108870294052731335
 GameObject:
   m_ObjectHideFlags: 0

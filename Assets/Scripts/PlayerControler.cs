@@ -14,7 +14,7 @@ public class PlayerControler : MonoBehaviour
     bool _Flipped { get; set; }
     bool _HasBow { get; set; }
     Animator _Anim { get; set; }
-    Rigidbody _Rb { get; set; }
+    public Rigidbody _Rb { get; private set; }
     Camera _MainCamera { get; set; }
     float timeLeftUncontrolable;
 
@@ -71,8 +71,8 @@ public class PlayerControler : MonoBehaviour
         {
             HorizontalMove(horizontal);
         }
-
-        if (_Grounded && horizontal == 0 && Mathf.Abs(_Rb.velocity.y) <= 0.5f)
+        /*
+        if (_Grounded && horizontal == 0 && Vector3.Magnitude(_Rb.velocity) <= 0.5f)
         {
             _Rb.isKinematic = true;
         }
@@ -80,6 +80,7 @@ public class PlayerControler : MonoBehaviour
         {
             _Rb.isKinematic = false;
         }
+        */
         FlipCharacter(horizontal);
         CheckJump();
     }
@@ -149,10 +150,12 @@ public class PlayerControler : MonoBehaviour
         Bow.SetActive(true);
     }
 
-    public void knockBack(Vector3 vector)
+    public void knockBack(Vector3 vector, float forcePercentage)
     {
         timeLeftUncontrolable = timeUncontrolable;
-        Vector3 jumpForce = new Vector3(0f, vector.y, vector.z) * KnockbackForce;
+        Vector3 jumpForce = new Vector3(0f, vector.y, vector.z) * KnockbackForce * forcePercentage;
+        //_Rb.velocity = new Vector3(0, 0, 0);
+        Debug.Log(jumpForce);
         _Rb.AddForce(jumpForce, ForceMode.Impulse);
     }
 
