@@ -148,7 +148,7 @@ Light:
   serializedVersion: 9
   m_Type: 1
   m_Color: {r: 1, g: 0.95686275, b: 0.8392157, a: 1}
-  m_Intensity: 0.1
+  m_Intensity: 0.3
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 147657027}
   - component: {fileID: 147657026}
   - component: {fileID: 147657025}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cube
   m_TagString: Burnable
   m_Icon: {fileID: 0}
@@ -1724,7 +1724,7 @@ GameObject:
   - component: {fileID: 1832624042}
   - component: {fileID: 1832624041}
   - component: {fileID: 1832624043}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Burnable
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -6478,6 +6478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ee775a3bcda10e49a65d495e03a7f21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  burnTime: 1
 --- !u!1 &1860527318
 GameObject:
   m_ObjectHideFlags: 0
