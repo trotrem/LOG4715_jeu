@@ -103,7 +103,7 @@ public class BowController : MonoBehaviour {
 
     void ShootArrow()
     {
-        //playerControler._Rb.isKinematic = false;
+        playerControler._Rb.isKinematic = false;
         float shootingForcePercentage = Mathf.Clamp(Mathf.Lerp(0, 1, timer / maxHoldTime), 0.02f, 1);
         if (selectedArrow != ArrowType.WIND)
         {

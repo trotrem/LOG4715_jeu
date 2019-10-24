@@ -23,6 +23,7 @@ public abstract class ArrowScript : MonoBehaviour {
     Vector3 initialRot;
 
     bool initialized = false;
+    bool stuck = false;
 
     protected Rigidbody rigidBody;
 
@@ -32,7 +33,7 @@ public abstract class ArrowScript : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (rigidBody.velocity.magnitude > 0)
+        if (!stuck && rigidBody.velocity.magnitude > 0)
             transform.rotation = Quaternion.FromToRotation(new Vector3(0,1,0), rigidBody.velocity);
     }
 
@@ -46,14 +47,15 @@ public abstract class ArrowScript : MonoBehaviour {
     {
         if ((WhatIsWall & (1 << coll.gameObject.layer)) != 0 && coll.gameObject.tag != "Arrow")
         {
+            stuck = true;
             float time = Time.fixedDeltaTime;
             Vector3 velocity = rigidBody.velocity;
             transform.position = transform.position + -velocity * time;
-
-            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+            rigidBody.velocity = Vector3.zero;
+            //transform.SetParent(coll.transform, true);
+            rigidBody.useGravity = false;
+            rigidBody.constraints = RigidbodyConstraints.FreezeAll;
         }
-
-        if (coll.gameObject.tag == "PlayerAura" )
 
         if ((WhatIsEnemy & (1 << coll.gameObject.layer)) != 0)
         {
