@@ -69,9 +69,15 @@ public class BowController : MonoBehaviour {
         }
 
         float scroll = Input.mouseScrollDelta.y;
+        
         if (scroll != 0)
         {
             selectedArrow = (ArrowType) (((int) selectedArrow + Mathf.FloorToInt(scroll) + 3) % 3);
+            ArrowSelectionGUI.GetComponent<ArrowSelectionGUI>().Select(selectedArrow);
+        }
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            selectedArrow = (ArrowType)(((int)selectedArrow + 4) % 3);
             ArrowSelectionGUI.GetComponent<ArrowSelectionGUI>().Select(selectedArrow);
         }
     }
