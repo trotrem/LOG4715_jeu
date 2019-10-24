@@ -34,9 +34,6 @@ public class PlayerControler : MonoBehaviour
     [SerializeField]
     int Lives = 3;
 
-    [SerializeField]
-    Vector3 SpawnLocation = new Vector3(0.001208663f, -0.5198455f, 0.2488693f);
-
     // Awake se produit avait le Start. Il peut être bien de régler les références dans cette section.
     void Awake()
     {
@@ -53,7 +50,6 @@ public class PlayerControler : MonoBehaviour
         alive = true;
 
         finishObjects = GameObject.FindGameObjectsWithTag("Finish");
-        hideGameOver();
     }
 
     // Vérifie les entrées de commandes du joueur
@@ -68,7 +64,8 @@ public class PlayerControler : MonoBehaviour
     // Gère le mouvement horizontal
     void HorizontalMove(float horizontal)
     {
-        _Rb.velocity = new Vector3(_Rb.velocity.x, _Rb.velocity.y, horizontal);
+        _Rb.position.Set(0, _Rb.position.y, _Rb.position.z);
+        _Rb.velocity = new Vector3(0, _Rb.velocity.y, horizontal);
         _Anim.SetFloat("MoveSpeed", Mathf.Abs(horizontal));
     }
 
@@ -93,14 +90,14 @@ public class PlayerControler : MonoBehaviour
         if (horizontal < 0 && !_Flipped)
         {
             _Flipped = true;
-            transform.Rotate(FlipRotation);
+            transform.RotateAround(transform.position, new Vector3(0,1,0), 180);
             _MainCamera.transform.Rotate(-FlipRotation);
             _MainCamera.transform.localPosition = InverseCameraPosition;
         }
         else if (horizontal > 0 && _Flipped)
         {
             _Flipped = false;
-            transform.Rotate(-FlipRotation);
+            transform.RotateAround(transform.position, new Vector3(0, 1, 0), -180);
             _MainCamera.transform.Rotate(FlipRotation);
             _MainCamera.transform.localPosition = CameraPosition;
         }
@@ -125,50 +122,5 @@ public class PlayerControler : MonoBehaviour
     {
         _HasBow = true;
         Bow.SetActive(true);
-    }
-
-    void OnTriggerEnter(Collider ennemi)
-    {
-        //checks other collider's tag
-        if (ennemi.gameObject.tag == "Ennemi")
-        {
-            HitEnemy();
-        }
-    }
-
-        public void HitEnemy()
-    {
-        if(Lives >= 1)
-        {
-            Respawn();
-        }
-        else
-        {
-            alive = false;
-            Time.timeScale = 0f;
-            showGameOver();
-        }
-    }
-
-    public void Respawn()
-    {
-        Lives--;
-        transform.position = SpawnLocation;
-    }
-
-    public void hideGameOver()
-    {
-        foreach (GameObject g in finishObjects)
-        {
-            g.SetActive(false);
-        }
-    }
-
-    public void showGameOver()
-    {
-        foreach (GameObject g in finishObjects)
-        {
-            g.SetActive(true);
-        }
     }
 }

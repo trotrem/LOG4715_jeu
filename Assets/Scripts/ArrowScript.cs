@@ -48,8 +48,9 @@ public abstract class ArrowScript : MonoBehaviour {
             float time = Time.fixedDeltaTime;
             Vector3 velocity = rigidBody.velocity;
             transform.position = transform.position + -velocity * time;
-           
-            this.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+
+            GetComponent<BoxCollider>().isTrigger = false;
+            GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
         }
 
         if ((WhatIsEnemy & (1 << coll.gameObject.layer)) != 0)

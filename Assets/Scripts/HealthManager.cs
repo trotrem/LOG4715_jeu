@@ -20,6 +20,10 @@ public class HealthManager : MonoBehaviour
     [SerializeField]
     LayerMask whatIsHurtful;
 
+    [SerializeField]
+    int invincibilityTime = 1;
+
+    float invincibleTimeLeft = 0;
     int livesLeft;
     List<GameObject> lifeGauge = new List<GameObject>();
     List<GameObject> deathGauge = new List<GameObject>();
@@ -44,6 +48,10 @@ public class HealthManager : MonoBehaviour
 	
 	// Update is called once per frame
 	void Update () {
+        if (invincibleTimeLeft > 0)
+        {
+            invincibleTimeLeft -= Time.deltaTime;
+        } 
 	}
 
     void OnCollisionEnter(Collision coll)
@@ -52,7 +60,12 @@ public class HealthManager : MonoBehaviour
         if ((whatIsHurtful & (1 << coll.gameObject.layer)) == 0)
             return;
 
+        if (invincibleTimeLeft > 0)
+            return;
+
+        invincibleTimeLeft = invincibilityTime;
         LooseLife();
+        Debug.Log("OUCH");
     }
 
     void LooseLife()
