@@ -38,6 +38,9 @@ public class BowController : MonoBehaviour {
     [SerializeField]
     PlayerControler playerControler;
 
+    [SerializeField]
+    GameObject lightSource;
+
     ArrowType selectedArrow = ArrowType.NORMAL;
 
     Queue<Tuple<Guid, GameObject>> normalArrows = new Queue<Tuple<Guid, GameObject>>();
@@ -74,12 +77,25 @@ public class BowController : MonoBehaviour {
         if (scroll != 0)
         {
             selectedArrow = (ArrowType) (((int) selectedArrow + Mathf.FloorToInt(scroll) + 3) % 3);
-            ArrowSelectionGUI.GetComponent<ArrowSelectionGUI>().Select(selectedArrow);
+            SwitchArrowType(selectedArrow);
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
             selectedArrow = (ArrowType)(((int)selectedArrow + 4) % 3);
-            ArrowSelectionGUI.GetComponent<ArrowSelectionGUI>().Select(selectedArrow);
+            SwitchArrowType(selectedArrow);
+        }
+    }
+
+    void SwitchArrowType(ArrowType type)
+    {
+        ArrowSelectionGUI.GetComponent<ArrowSelectionGUI>().Select(selectedArrow);
+        if (selectedArrow == ArrowType.FIRE)
+        {
+            lightSource.SetActive(true);
+        }
+        else
+        {
+            lightSource.SetActive(false);
         }
     }
 

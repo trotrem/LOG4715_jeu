@@ -129,8 +129,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   maxForce: 800
-  bowController: {fileID: 1632467137453442, guid: d99abd46515dad1468c3e8314ef0bd14,
-    type: 3}
   stuck: 0
   WhatIsBurnable:
     serializedVersion: 2
@@ -184,7 +182,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.9716981, g: 0.684678, b: 0.09625311, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
@@ -275,7 +273,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.9716981, g: 0.684678, b: 0.09625311, a: 1}
   m_Intensity: 1
-  m_Range: 10
+  m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
