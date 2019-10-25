@@ -7,6 +7,8 @@ TagManager:
   - Ennemi
   - Arrow
   - Burnable
+  - FireArrow
+  - NormalArrow
   layers:
   - Default
   - TransparentFX
@@ -19,9 +21,9 @@ TagManager:
   - Floor
   - InvisibleShootingWall
   - Enemy
-  - 
-  - 
-  - 
+  - Arrow
+  - Wall
+  - Movable
   - 
   - 
   - 

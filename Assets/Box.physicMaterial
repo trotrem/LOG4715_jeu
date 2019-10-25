@@ -6,9 +6,9 @@ PhysicMaterial:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: NonStickCollider
-  dynamicFriction: 0.06
-  staticFriction: 0.03
+  m_Name: Box
+  dynamicFriction: 0.21
+  staticFriction: 0.27
   bounciness: 0
   frictionCombine: 1
   bounceCombine: 3

@@ -40,7 +40,7 @@ public class PlayerSurroundingsScanner : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Arrow")
+        if (other.gameObject.tag == "Arrow" && other.gameObject.GetComponent<ArrowScript>().stuck)
         {
             colliding_arrows.Add(other);
         }

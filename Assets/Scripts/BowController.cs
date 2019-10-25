@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -39,8 +40,8 @@ public class BowController : MonoBehaviour {
 
     ArrowType selectedArrow = ArrowType.NORMAL;
 
-    Queue<GameObject> normalArrows = new Queue<GameObject>();
-    Queue<GameObject> fireArrows = new Queue<GameObject>();
+    Queue<Tuple<Guid, GameObject>> normalArrows = new Queue<Tuple<Guid, GameObject>>();
+    Queue<Tuple<Guid, GameObject>> fireArrows = new Queue<Tuple<Guid, GameObject>>();
 
 
     float timer = 0f;
@@ -82,6 +83,43 @@ public class BowController : MonoBehaviour {
         }
     }
 
+    internal void DestroyArrow(Guid id)
+    {
+        int c;
+        c = fireArrows.Count;
+        Debug.Log(c);
+        for (int i = 0; i < c; i++)
+        {
+            Tuple<Guid, GameObject> arrow = fireArrows.Dequeue();
+            Debug.Log(id + "            " + arrow.Item1);
+            if (arrow.Item1 == id)
+            {
+                Debug.Log("werewewr");
+                Destroy(arrow.Item2.gameObject);
+            }
+            else
+            {
+                fireArrows.Enqueue(arrow);
+            }
+        }
+        c = normalArrows.Count;
+        Debug.Log(c);
+        for (int i = 0; i < c; i++)
+        {
+            Tuple<Guid, GameObject> arrow = normalArrows.Dequeue();
+            Debug.Log(id + "            " + arrow.Item1);
+            if (arrow.Item1 == id)
+            {
+                Debug.Log("werewewr");
+                Destroy(arrow.Item2.gameObject);
+            }
+            else
+            {
+                normalArrows.Enqueue(arrow);
+            }
+        }
+    }
+
     void PositionBow()
     {
         Vector3 parentPosition = transform.parent.position;
@@ -111,6 +149,9 @@ public class BowController : MonoBehaviour {
                 selectedArrow == ArrowType.NORMAL ? NormalArrowPrefab : FireArrowPrefab,
                 transform.position, Quaternion.Euler(90, 0, 0), ProjectileParent
                 );
+            Guid id = Guid.NewGuid();
+            arrow.GetComponent<ArrowScript>().setguid(id);
+            arrow.GetComponent<ArrowScript>().setParent(this);
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             timer = 0;
@@ -122,14 +163,14 @@ public class BowController : MonoBehaviour {
                 if (selectedArrow == ArrowType.NORMAL)
                 {
                     if (normalArrows.Count >= 3)
-                        Destroy(normalArrows.Dequeue());
-                    normalArrows.Enqueue(arrow);
+                        Destroy(normalArrows.Dequeue().Item2);
+                    normalArrows.Enqueue(new Tuple<Guid, GameObject>(id, arrow));
                 }
                 else
                 {
                     if (fireArrows.Count >= 3)
-                        Destroy(fireArrows.Dequeue());
-                    fireArrows.Enqueue(arrow);
+                        Destroy(fireArrows.Dequeue().Item2);
+                    fireArrows.Enqueue(new Tuple<Guid, GameObject>(id, arrow));
                 }
             }
             else

@@ -1,19 +1,17 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class ArrowScript : MonoBehaviour {
 
-
-    [SerializeField]
-    LayerMask WhatIsWall;
-
     [SerializeField]
     LayerMask WhatIsEnemy;
 
     [SerializeField]
-
     float maxForce = 800f;
+
+    BowController bowController;
 
     float h;
     float k;
@@ -23,12 +21,13 @@ public abstract class ArrowScript : MonoBehaviour {
     Vector3 initialRot;
 
     bool initialized = false;
-    bool stuck = false;
+    public bool stuck = false;
 
     protected Rigidbody rigidBody;
+    private Guid guid;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
 	}
 	
 	// Update is called once per frame
@@ -45,7 +44,7 @@ public abstract class ArrowScript : MonoBehaviour {
 
     protected virtual void OnTriggerEnter(Collider coll)
     {
-        if (!stuck && (WhatIsWall & (1 << coll.gameObject.layer)) != 0 && coll.gameObject.tag != "Arrow")
+        if (!stuck && (getWhatIsSticking() & (1 << coll.gameObject.layer)) != 0)
         {
             stuck = true;
             float time = Time.fixedDeltaTime;
@@ -59,6 +58,11 @@ public abstract class ArrowScript : MonoBehaviour {
             rigidBody.constraints = RigidbodyConstraints.FreezeAll;
         }
 
+        if ((getWhatIsDestroy() & (1 << coll.gameObject.layer)) != 0)
+        {
+            bowController.DestroyArrow(guid);
+        }
+
         if (!stuck && (WhatIsEnemy & (1 << coll.gameObject.layer)) != 0)
         {
             int damage = getDamage();
@@ -67,4 +71,16 @@ public abstract class ArrowScript : MonoBehaviour {
     }
 
     protected abstract int getDamage();
+    protected abstract int getWhatIsDestroy();
+    protected abstract int getWhatIsSticking();
+
+    internal void setguid(Guid guid)
+    {
+        this.guid = guid;
+    }
+
+    internal void setParent(BowController bowController)
+    {
+        this.bowController = bowController;
+    }
 }
