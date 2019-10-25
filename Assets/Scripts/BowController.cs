@@ -41,6 +41,13 @@ public class BowController : MonoBehaviour {
     [SerializeField]
     GameObject lightSource;
 
+    [SerializeField]
+    Color chargedColor;
+
+    MeshRenderer renderer;
+    [SerializeField]
+    Color startColor;
+
     ArrowType selectedArrow = ArrowType.NORMAL;
 
     Queue<Tuple<Guid, GameObject>> normalArrows = new Queue<Tuple<Guid, GameObject>>();
@@ -53,6 +60,7 @@ public class BowController : MonoBehaviour {
 	void Start () {
         ArrowSelectionGUI.SetActive(true);
         ArrowSelectionGUI.GetComponent<ArrowSelectionGUI>().Select(selectedArrow);
+        renderer = GetComponent<MeshRenderer>();
     }
 	
 	// Update is called once per frame
@@ -71,6 +79,8 @@ public class BowController : MonoBehaviour {
             ShootArrow();
             isHoldingMouse = false;
         }
+
+        renderer.material.SetColor("_Color", Color.Lerp(startColor, chargedColor, timer / maxHoldTime));
 
         float scroll = Input.mouseScrollDelta.y;
         

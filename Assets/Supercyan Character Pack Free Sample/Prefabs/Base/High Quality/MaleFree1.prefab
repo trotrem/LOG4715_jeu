@@ -6407,6 +6407,8 @@ MonoBehaviour:
   KnockBackForce: 15
   playerControler: {fileID: 114300015090708552}
   lightSource: {fileID: 1607172997914301099}
+  chargedColor: {r: 1, g: 0.009691493, b: 0, a: 0}
+  startColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &4108870294052731335
 GameObject:
   m_ObjectHideFlags: 0
@@ -6511,7 +6513,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
       propertyPath: m_LocalPosition.x
