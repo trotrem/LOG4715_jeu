@@ -66,7 +66,7 @@ public abstract class ArrowScript : MonoBehaviour {
         if (!stuck && (WhatIsEnemy & (1 << coll.gameObject.layer)) != 0)
         {
             int damage = getDamage();
-            //TODO Damage Enemy
+            coll.gameObject.GetComponent<Ennemy>().Hit(getDamage());
         }
     }
 
