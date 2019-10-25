@@ -41,6 +41,8 @@ public class PlayerControler : MonoBehaviour
 
     [SerializeField]
     GameObject Bow;
+
+    public float kinematicTimer = 0;
     
     // Awake se produit avait le Start. Il peut être bien de régler les références dans cette section.
     void Awake()
@@ -72,13 +74,17 @@ public class PlayerControler : MonoBehaviour
             HorizontalMove(horizontal);
         }
         RaycastHit hit;
-        if (_Grounded && horizontal == 0 && Vector3.Magnitude(_Rb.velocity) <= 0.8f && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.5f, WhatIsGround))
+        if (_Grounded && horizontal == 0 && Vector3.Magnitude(_Rb.velocity) <= 0.8f && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.5f, WhatIsGround) && kinematicTimer >= 0)
         {
             _Rb.isKinematic = true;
         }
         else
         {
             _Rb.isKinematic = false;
+            if(kinematicTimer > 0)
+            {
+                kinematicTimer -= Time.deltaTime;
+            }
         }
         
         FlipCharacter(horizontal);
