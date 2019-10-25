@@ -58,14 +58,13 @@ public abstract class ArrowScript : MonoBehaviour {
             rigidBody.constraints = RigidbodyConstraints.FreezeAll;
         }
 
-        if ((getWhatIsDestroy() & (1 << coll.gameObject.layer)) != 0)
+        if (!stuck && (getWhatIsDestroy() & (1 << coll.gameObject.layer)) != 0)
         {
             bowController.DestroyArrow(guid);
         }
 
         if (!stuck && (WhatIsEnemy & (1 << coll.gameObject.layer)) != 0)
         {
-            int damage = getDamage();
             coll.gameObject.GetComponent<Ennemy>().Hit(getDamage());
         }
     }
