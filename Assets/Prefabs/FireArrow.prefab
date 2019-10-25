@@ -14,9 +14,9 @@ GameObject:
   - component: {fileID: 23844295415344340}
   - component: {fileID: 54201137788527238}
   - component: {fileID: -4987362030844276308}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: FireArrow
-  m_TagString: Arrow
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,7 +154,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1108619017691983780}
   - component: {fileID: 563940922445895490}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Point Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -245,7 +245,7 @@ GameObject:
   m_Component:
   - component: {fileID: 934611224678192879}
   - component: {fileID: 317580857608535332}
-  m_Layer: 11
+  m_Layer: 14
   m_Name: Point Light (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
