@@ -14,9 +14,12 @@ public class FireArrowScript : ArrowScript
     [SerializeField]
     LayerMask WhatIsDestroy;
 
+    [SerializeField]
+    int Damage = 2;
+
     protected override int getDamage()
     {
-        return 2;
+        return Damage;
     }
 
     protected override int getWhatIsDestroy()

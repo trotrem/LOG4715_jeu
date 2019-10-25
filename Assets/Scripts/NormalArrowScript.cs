@@ -11,6 +11,9 @@ public class NormalArrowScript : ArrowScript
     [SerializeField]
     LayerMask WhatIsDestroy;
 
+    [SerializeField]
+    int Damage = 1;
+
     protected override int getWhatIsDestroy()
     {
         return WhatIsDestroy;
@@ -23,6 +26,6 @@ public class NormalArrowScript : ArrowScript
 
     protected override int getDamage()
     {
-        return 1;
+        return Damage;
     }
 }
