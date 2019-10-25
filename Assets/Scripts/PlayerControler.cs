@@ -72,7 +72,7 @@ public class PlayerControler : MonoBehaviour
             HorizontalMove(horizontal);
         }
         RaycastHit hit;
-        if (_Grounded && horizontal == 0 && Vector3.Magnitude(_Rb.velocity) <= 0.5f && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.1f, WhatIsGround))
+        if (_Grounded && horizontal == 0 && Vector3.Magnitude(_Rb.velocity) <= 0.8f && Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), out hit, 0.5f, WhatIsGround))
         {
             _Rb.isKinematic = true;
         }

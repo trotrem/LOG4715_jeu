@@ -56,6 +56,7 @@ public abstract class ArrowScript : MonoBehaviour {
             transform.SetParent(inbetween.transform, false);
             rigidBody.useGravity = false;
             rigidBody.constraints = RigidbodyConstraints.FreezeAll;
+            rigidBody.isKinematic = true;
         }
 
         if (!stuck && (getWhatIsDestroy() & (1 << coll.gameObject.layer)) != 0)

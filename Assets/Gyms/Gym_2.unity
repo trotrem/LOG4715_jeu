@@ -441,21 +441,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 114300015090708552, guid: 313ad0ef31f75b84f9f31c0528802fdd,
-        type: 3}
-      propertyPath: WhatIsGround.m_Bits
-      value: 2304
-      objectReference: {fileID: 0}
     - target: {fileID: 2633535517140062439, guid: 313ad0ef31f75b84f9f31c0528802fdd,
         type: 3}
       propertyPath: canvas
       value: 
       objectReference: {fileID: 1860527321}
-    - target: {fileID: 2307781309798721946, guid: 313ad0ef31f75b84f9f31c0528802fdd,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8646968887604506844, guid: 313ad0ef31f75b84f9f31c0528802fdd,
         type: 3}
       propertyPath: ProjectileParent
@@ -466,6 +456,16 @@ PrefabInstance:
       propertyPath: ArrowSelectionGUI
       value: 
       objectReference: {fileID: 1519112878}
+    - target: {fileID: 114300015090708552, guid: 313ad0ef31f75b84f9f31c0528802fdd,
+        type: 3}
+      propertyPath: WhatIsGround.m_Bits
+      value: 2304
+      objectReference: {fileID: 0}
+    - target: {fileID: 2307781309798721946, guid: 313ad0ef31f75b84f9f31c0528802fdd,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
 --- !u!1 &339454732
