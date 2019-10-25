@@ -15,7 +15,22 @@ public class FireArrowScript : ArrowScript
     LayerMask WhatIsDestroy;
 
     [SerializeField]
+    List<Light> lights;
+
+    [SerializeField]
+    float illumination_radius = 8f;
+
+
+    [SerializeField]
     int Damage = 2;
+
+    private void Start()
+    {
+        foreach (var l in lights)
+        {
+            l.range = illumination_radius;
+        }
+    }
 
     protected override int getDamage()
     {

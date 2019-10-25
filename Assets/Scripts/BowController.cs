@@ -44,6 +44,12 @@ public class BowController : MonoBehaviour {
     [SerializeField]
     Color chargedColor;
 
+    [SerializeField]
+    float fireArrowSelectedLightRadius = 2f;
+
+    [SerializeField]
+    Light fireArrowSelectedLight;
+
     MeshRenderer renderer;
     [SerializeField]
     Color startColor;
@@ -61,6 +67,7 @@ public class BowController : MonoBehaviour {
         ArrowSelectionGUI.SetActive(true);
         ArrowSelectionGUI.GetComponent<ArrowSelectionGUI>().Select(selectedArrow);
         renderer = GetComponent<MeshRenderer>();
+        fireArrowSelectedLight.range = fireArrowSelectedLightRadius;
     }
 	
 	// Update is called once per frame

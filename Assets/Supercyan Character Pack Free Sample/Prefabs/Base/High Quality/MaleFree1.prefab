@@ -6408,6 +6408,8 @@ MonoBehaviour:
   playerControler: {fileID: 114300015090708552}
   lightSource: {fileID: 1607172997914301099}
   chargedColor: {r: 1, g: 0.009691493, b: 0, a: 0}
+  fireArrowSelectedLightRadius: 2
+  fireArrowSelectedLight: {fileID: 8959896628892498664}
   startColor: {r: 0, g: 0, b: 0, a: 0}
 --- !u!1 &4108870294052731335
 GameObject:

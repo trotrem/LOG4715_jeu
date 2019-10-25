@@ -139,6 +139,11 @@ MonoBehaviour:
   WhatIsDestroy:
     serializedVersion: 2
     m_Bits: 1024
+  lights:
+  - {fileID: 317580857608535332}
+  - {fileID: 563940922445895490}
+  illumination_radius: 8
+  Damage: 2
 --- !u!1 &2407827084975961068
 GameObject:
   m_ObjectHideFlags: 0
