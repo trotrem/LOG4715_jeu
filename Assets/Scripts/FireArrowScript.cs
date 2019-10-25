@@ -6,9 +6,6 @@ public class FireArrowScript : ArrowScript
 {
 
     [SerializeField]
-    LayerMask WhatIsBurnable;
-
-    [SerializeField]
     LayerMask WhatIsSticking;
 
     [SerializeField]

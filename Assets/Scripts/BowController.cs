@@ -175,6 +175,7 @@ public class BowController : MonoBehaviour {
     void ShootArrow()
     {
         float shootingForcePercentage = Mathf.Clamp(Mathf.Lerp(0, 1, timer / maxHoldTime), 0.02f, 1);
+        timer = 0;
         if (selectedArrow != ArrowType.WIND)
         {
             GameObject arrow = Instantiate(
@@ -186,7 +187,6 @@ public class BowController : MonoBehaviour {
             arrow.GetComponent<ArrowScript>().setParent(this);
             RaycastHit hit;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-            timer = 0;
             if (Physics.Raycast(ray, out hit, 100.0f, WhatIsInvisibleWall))
             {
                 var point = new Vector3(0f, hit.point.y, hit.point.z);
@@ -211,8 +211,8 @@ public class BowController : MonoBehaviour {
             }
         } else
         {
+            playerControler.kinematicTimer = 0.05f;
             playerControler._Rb.isKinematic = false;
-            playerControler.kinematicTimer = 0.3f;
             RaycastHit direction;
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             if (Physics.Raycast(ray, out direction, 100.0f, WhatIsInvisibleWall))
