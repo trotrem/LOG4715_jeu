@@ -456,6 +456,17 @@ PrefabInstance:
       propertyPath: ArrowSelectionGUI
       value: 
       objectReference: {fileID: 1519112878}
+    - target: {fileID: 54659386659747790, guid: 313ad0ef31f75b84f9f31c0528802fdd,
+        type: 3}
+      propertyPath: m_CollisionDetection
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 135938282639246276, guid: 313ad0ef31f75b84f9f31c0528802fdd,
+        type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: eb535d441884b784492d6b42c8ebcadf,
+        type: 2}
     - target: {fileID: 114300015090708552, guid: 313ad0ef31f75b84f9f31c0528802fdd,
         type: 3}
       propertyPath: WhatIsGround.m_Bits

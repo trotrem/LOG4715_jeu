@@ -120,14 +120,11 @@ public class BowController : MonoBehaviour {
     {
         int c;
         c = fireArrows.Count;
-        Debug.Log(c);
         for (int i = 0; i < c; i++)
         {
             Tuple<Guid, GameObject> arrow = fireArrows.Dequeue();
-            Debug.Log(id + "            " + arrow.Item1);
             if (arrow.Item1 == id)
             {
-                Debug.Log("werewewr");
                 Destroy(arrow.Item2.gameObject);
             }
             else
@@ -136,14 +133,11 @@ public class BowController : MonoBehaviour {
             }
         }
         c = normalArrows.Count;
-        Debug.Log(c);
         for (int i = 0; i < c; i++)
         {
             Tuple<Guid, GameObject> arrow = normalArrows.Dequeue();
-            Debug.Log(id + "            " + arrow.Item1);
             if (arrow.Item1 == id)
             {
-                Debug.Log("werewewr");
                 Destroy(arrow.Item2.gameObject);
             }
             else
