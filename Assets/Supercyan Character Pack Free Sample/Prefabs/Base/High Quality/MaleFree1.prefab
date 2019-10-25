@@ -1432,10 +1432,9 @@ GameObject:
   - component: {fileID: 4889916270699016}
   - component: {fileID: 95612694983450844}
   - component: {fileID: 54659386659747790}
-  - component: {fileID: 65346096421526964}
-  - component: {fileID: 135938282639246276}
   - component: {fileID: 114300015090708552}
   - component: {fileID: 2633535517140062439}
+  - component: {fileID: 7542082349218770865}
   m_Layer: 0
   m_Name: MaleFree1
   m_TagString: Player
@@ -1498,32 +1497,6 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 114
   m_CollisionDetection: 1
---- !u!65 &65346096421526964
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968476592218994}
-  m_Material: {fileID: 13400000, guid: eb535d441884b784492d6b42c8ebcadf, type: 2}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.4, y: 0.8, z: 0.4}
-  m_Center: {x: 0, y: 0.7, z: 0}
---- !u!135 &135938282639246276
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1968476592218994}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 0.2
-  m_Center: {x: 0, y: 0.17, z: 0}
 --- !u!114 &114300015090708552
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1545,6 +1518,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   Bow: {fileID: 2307781309798721946}
+  kinematicTimer: 0
 --- !u!114 &2633535517140062439
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1567,6 +1541,20 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 1024
   invincibilityTime: 1
+--- !u!136 &7542082349218770865
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1968476592218994}
+  m_Material: {fileID: 13400000, guid: eb535d441884b784492d6b42c8ebcadf, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.16082649
+  m_Height: 1.0392351
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.5206553, z: -0.012355313}
 --- !u!1 &1607172997914301099
 GameObject:
   m_ObjectHideFlags: 0
@@ -6509,14 +6497,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6209895606857474087}
     m_Modifications:
-    - target: {fileID: 100000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
-      propertyPath: m_Name
-      value: bow
-      objectReference: {fileID: 0}
-    - target: {fileID: 100000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6560,6 +6540,14 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
+      propertyPath: m_Name
+      value: bow
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 04b2442e04ff81c42ad5d6eb9693664c, type: 3}
       propertyPath: m_Materials.Array.data[0]
