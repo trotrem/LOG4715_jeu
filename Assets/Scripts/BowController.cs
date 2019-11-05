@@ -60,10 +60,14 @@ public class BowController : MonoBehaviour {
     Queue<Tuple<Guid, GameObject>> fireArrows = new Queue<Tuple<Guid, GameObject>>();
 
 
+    List<ArrowType> unlockedArrows = new List<ArrowType>();
+
+
     float timer = 0f;
     bool isHoldingMouse;
 	// Use this for initialization
 	void Start () {
+        unlockedArrows.Add(ArrowType.NORMAL);
         ArrowSelectionGUI.SetActive(true);
         ArrowSelectionGUI.GetComponent<ArrowSelectionGUI>().Select(selectedArrow);
         renderer = GetComponent<MeshRenderer>();
@@ -93,12 +97,12 @@ public class BowController : MonoBehaviour {
         
         if (scroll != 0)
         {
-            selectedArrow = (ArrowType) (((int) selectedArrow + Mathf.FloorToInt(scroll) + 3) % 3);
+            selectedArrow = unlockedArrows[(unlockedArrows.IndexOf(selectedArrow) + Mathf.FloorToInt(scroll) + unlockedArrows.Count) % unlockedArrows.Count];
             SwitchArrowType(selectedArrow);
         }
         if (Input.GetKeyDown(KeyCode.Tab))
         {
-            selectedArrow = (ArrowType)(((int)selectedArrow + 4) % 3);
+            selectedArrow = unlockedArrows[(unlockedArrows.IndexOf(selectedArrow) + 1) % unlockedArrows.Count];
             SwitchArrowType(selectedArrow);
         }
     }
@@ -164,6 +168,15 @@ public class BowController : MonoBehaviour {
         {
             Debug.Log("Ta souris est out of bounds");
         }
+    }
+
+    internal void PickupArrow(ArrowType arrowType)
+    {
+        if (!unlockedArrows.Contains(arrowType))
+            unlockedArrows.Add(arrowType);
+
+        selectedArrow = arrowType;
+        this.SwitchArrowType(arrowType);
     }
 
     void ShootArrow()
