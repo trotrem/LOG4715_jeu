@@ -160,7 +160,7 @@ ScriptedImporter:
         to: 3
     textureParameters:
     - textureName: Stone - baseColor
-      wrapMode: 0
+      wrapMode: 1
       filterMode: 1
       aniso: 1
     - textureName: Stone - normal
@@ -174,7 +174,7 @@ ScriptedImporter:
     - textureName: Stone - metallic
       wrapMode: 0
       filterMode: 1
-      aniso: 1
+      aniso: 6
     colorSpaceList: []
     inputTextureMap: []
     targetSettingList:
