@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -11,6 +12,12 @@ public class PlayerControler : MonoBehaviour
 
     // Déclaration des variables
     public bool _Grounded { get; private set; }
+
+    internal void Autosave(Vector3 position)
+    {
+        GetComponent<HealthManager>().UpdateSpawnPoint(position);
+    }
+
     bool _Flipped { get; set; }
     bool _HasBow { get; set; }
     Animator _Anim { get; set; }

@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -26,12 +27,22 @@ public class HealthManager : MonoBehaviour
     float invincibleTimeLeft = 0;
     int livesLeft;
     List<GameObject> lifeGauge = new List<GameObject>();
+
+    internal void UpdateSpawnPoint(Vector3 position)
+    {
+        respawnPoint = position;
+    }
+
     List<GameObject> deathGauge = new List<GameObject>();
+    Vector3 initialSpawnPoint;
+    Vector3 respawnPoint;
 
 
     // Use this for initialization
     void Start () {
         livesLeft = lives;
+        initialSpawnPoint = transform.position;
+        respawnPoint = initialSpawnPoint;
 
         for (int i = 0; i < lives; i++)
         {
@@ -76,9 +87,10 @@ public class HealthManager : MonoBehaviour
 
         if (livesLeft > 0)
         {
-            transform.SetPositionAndRotation(new Vector3(0, 1, 0), transform.rotation);
+            transform.SetPositionAndRotation(respawnPoint, transform.rotation);
         } else
         {
+            respawnPoint = initialSpawnPoint;
             canvas.transform.Find("GameOver").gameObject.SetActive(true);
             Time.timeScale = 0;
         }
