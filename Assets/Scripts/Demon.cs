@@ -16,6 +16,8 @@ public class Demon : Ennemy
     [SerializeField]
     float groundDistance = 0.5f;
 
+    Vector3 LastKnownPlayerPosition;
+
     bool detected = false;
     bool _Flipped { get; set; }
     public Rigidbody _Rb { get; set; }
@@ -25,19 +27,19 @@ public class Demon : Ennemy
     {
         _Anim = GetComponent<Animator>();
         _Rb = GetComponent<Rigidbody>();
+        
     }
 
     // Start is called before the first frame update
-    void Start()
+    protected new void Start()
     {
-        _Anim.Play("demon_walk");
+        base.Start();
         _Flipped = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        Move();
         detectPlayer();
         if (nearEdge() && !detected)
         {
@@ -45,7 +47,13 @@ public class Demon : Ennemy
         }
         else if (detected)
         {
+            _Anim.SetTrigger("run");
             chasePlayer();
+        }
+        else
+        {
+            _Anim.SetTrigger("walk");
+            Move();
         }
         
     }
@@ -57,8 +65,8 @@ public class Demon : Ennemy
 
     void chasePlayer()
     {
-
-        _Rb.velocity = new Vector3(0.0f, _Rb.velocity.y, runSpeed * transform.forward.z);
+        Vector3 direction = LastKnownPlayerPosition - transform.position;
+        _Rb.velocity = new Vector3(0.0f, _Rb.velocity.y, runSpeed * direction.normalized.z);
     }
 
     void FlipDemon()
@@ -90,10 +98,11 @@ public class Demon : Ennemy
 
     bool detectPlayer()
     {
-        
+        detected = false;
         RaycastHit hit;
         if (Physics.Raycast(transform.position, new Vector3(0.0f,0.0f,transform.forward.z), out hit, 50.0f) && hit.transform.tag == "Player")
         {
+            LastKnownPlayerPosition = hit.transform.position;
             detected = true;
         }
 
