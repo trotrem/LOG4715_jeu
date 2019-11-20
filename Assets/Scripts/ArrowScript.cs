@@ -26,6 +26,8 @@ public abstract class ArrowScript : MonoBehaviour {
     protected Rigidbody rigidBody;
     private Guid guid;
 
+    private float lifespan = 0;
+
     // Use this for initialization
     void Start () {
     }
@@ -41,6 +43,7 @@ public abstract class ArrowScript : MonoBehaviour {
 
     // Update is called once per frame
     void Update () {
+        lifespan += Time.deltaTime;
         if (!stuck && rigidBody.velocity.magnitude > 0)
         {
             transform.rotation = Quaternion.FromToRotation(new Vector3(0, 1, 0), rigidBody.velocity);
@@ -57,6 +60,12 @@ public abstract class ArrowScript : MonoBehaviour {
     {
         if (!stuck && (getWhatIsSticking() & (1 << coll.gameObject.layer)) != 0)
         {
+            if (lifespan < 0.1)
+            {
+                Bounce();
+                return;
+            }
+            GetComponents<AudioSource>()[0].Play();
             stuck = true;
             float time = Time.fixedDeltaTime;
             Vector3 velocity = rigidBody.velocity;
@@ -72,13 +81,21 @@ public abstract class ArrowScript : MonoBehaviour {
 
         if (!stuck && (getWhatIsDestroy() & (1 << coll.gameObject.layer)) != 0)
         {
+            GetComponents<AudioSource>()[0].Play();
             bowController.DestroyArrow(guid);
         }
 
         if (!stuck && (WhatIsEnemy & (1 << coll.gameObject.layer)) != 0)
         {
+            GetComponents<AudioSource>()[0].Play();
             coll.gameObject.GetComponent<Ennemy>().Hit(getDamage());
         }
+    }
+
+    private void Bounce()
+    {
+        GetComponents<AudioSource>()[0].Play();
+        rigidBody.velocity = -rigidBody.velocity;
     }
 
     protected abstract int getDamage();

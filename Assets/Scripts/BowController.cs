@@ -201,12 +201,14 @@ public class BowController : MonoBehaviour {
 
                 if (selectedArrow == ArrowType.NORMAL)
                 {
+                    gameObject.GetComponents<AudioSource>()[1].Play();
                     if (normalArrows.Count >= 3)
                         Destroy(normalArrows.Dequeue().Item2);
                     normalArrows.Enqueue(new Tuple<Guid, GameObject>(id, arrow));
                 }
                 else
                 {
+                    gameObject.GetComponents<AudioSource>()[2].Play();
                     if (fireArrows.Count >= 3)
                         Destroy(fireArrows.Dequeue().Item2);
                     fireArrows.Enqueue(new Tuple<Guid, GameObject>(id, arrow));
@@ -218,6 +220,7 @@ public class BowController : MonoBehaviour {
             }
         } else
         {
+            gameObject.GetComponents<AudioSource>()[0].Play();
             playerControler.kinematicTimer = 0.05f;
             playerControler._Rb.isKinematic = false;
             RaycastHit direction;
