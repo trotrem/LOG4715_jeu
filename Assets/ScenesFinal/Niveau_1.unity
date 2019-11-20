@@ -48986,7 +48986,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canvas: {fileID: 919287787}
   thomas: {fileID: 1035575717}
-  bomb: {fileID: 1195558218955148990, guid: a295f1cfab9a54e40b390b1a92916be9, type: 3}
+  bomb: {fileID: 6769522155278303308, guid: bd3050a69d755d9e199d687dfc1769e3, type: 3}
   lives: 3
   period: 3
 --- !u!1 &1039446917
