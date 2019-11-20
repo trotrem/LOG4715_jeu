@@ -76,11 +76,11 @@ public class HealthManager : MonoBehaviour
 
         invincibleTimeLeft = invincibilityTime;
         LooseLife();
-        Debug.Log("OUCH");
     }
 
-    void LooseLife()
+    public void LooseLife()
     {
+        Debug.Log("OUCH");
         livesLeft--;
         lifeGauge[livesLeft].SetActive(false);
         deathGauge[livesLeft].SetActive(true);
