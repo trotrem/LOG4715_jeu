@@ -14847,7 +14847,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4889916270699016, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0.02
+      value: 152.75
       objectReference: {fileID: 0}
     - target: {fileID: 4889916270699016, guid: 313ad0ef31f75b84f9f31c0528802fdd, type: 3}
       propertyPath: m_LocalRotation.x
@@ -14899,7 +14899,7 @@ PrefabInstance:
     - target: {fileID: 2307781309798721946, guid: 313ad0ef31f75b84f9f31c0528802fdd,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8646968887604506844, guid: 313ad0ef31f75b84f9f31c0528802fdd,
         type: 3}
@@ -20691,7 +20691,7 @@ PrefabInstance:
     - target: {fileID: 5102943101024289000, guid: 6ad4fc2c19a1a36f39e0133926f46cf1,
         type: 3}
       propertyPath: m_Mass
-      value: 1
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6ad4fc2c19a1a36f39e0133926f46cf1, type: 3}
@@ -28587,7 +28587,7 @@ GameObject:
   - component: {fileID: 617585686}
   - component: {fileID: 617585685}
   - component: {fileID: 617585684}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36838,7 +36838,7 @@ GameObject:
   - component: {fileID: 774296761}
   - component: {fileID: 774296760}
   - component: {fileID: 774296759}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45391,8 +45391,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 947590275}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
-  m_LocalPosition: {x: -0.2, y: 0, z: 0}
-  m_LocalScale: {x: 100, y: 100, z: 100}
+  m_LocalPosition: {x: -0.2, y: 7, z: 109.4}
+  m_LocalScale: {x: 10, y: 10, z: 30}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
@@ -76544,7 +76544,7 @@ GameObject:
   - component: {fileID: 1642492960}
   - component: {fileID: 1642492959}
   - component: {fileID: 1642492958}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -77901,7 +77901,7 @@ GameObject:
   - component: {fileID: 1664115011}
   - component: {fileID: 1664115010}
   m_Layer: 0
-  m_Name: Plane
+  m_Name: BackWall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
