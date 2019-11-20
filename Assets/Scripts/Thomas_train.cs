@@ -4,8 +4,15 @@ using UnityEngine;
 
 public class Thomas_train : MonoBehaviour
 {
+    [SerializeField] Canvas canvas;
 
     public GameObject thomas;
+    public GameObject bomb;
+
+    public int lives = 3;
+
+    private float nextActionTime = 3f;
+    public float period = 0.1f;
 
     private Vector3 startPos;
     private Vector3 endPos;
@@ -31,6 +38,12 @@ public class Thomas_train : MonoBehaviour
     {
         if (start)
         {
+            if (Time.time > nextActionTime)
+            {
+                nextActionTime += period;
+                // execute block of code here
+                spawnBomb();
+            }
             if (state == 0)
             {
                 currentLerpTime += Time.deltaTime;
@@ -75,7 +88,7 @@ public class Thomas_train : MonoBehaviour
                 currentLerpTimeRotation += Time.deltaTime;
                 float perc = currentLerpTimeRotation / lerpTimeRotation;
                 thomas.transform.rotation = Quaternion.Lerp(thomas.transform.rotation, Quaternion.Euler(0, 180, 0), perc);
-                if (thomas.transform.rotation == Quaternion.Euler(0, 180, 0))
+                if (thomas.transform.rotation == Quaternion.Euler(0, -180, 0))
                 {
                     state = 0;
                     currentLerpTime = 0;
@@ -83,6 +96,28 @@ public class Thomas_train : MonoBehaviour
                     endPos = thomas.transform.position + Vector3.back * distance;
                 }
             }
+        }
+    }
+
+    public void spawnBomb()
+    {
+        Instantiate(bomb, this.transform.position - Vector3.up * 2, this.transform.rotation);
+    }
+
+    //quand thomas se fait attaquer par une bombe
+    void OnCollisionEnter(Collision coll)
+    {
+        LooseLife();
+    }
+
+    void LooseLife()
+    {
+        lives--;
+
+        if (lives <= 0)
+        {
+            canvas.transform.Find("canvas_win").gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
     }
 }

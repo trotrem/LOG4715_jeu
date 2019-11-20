@@ -109,7 +109,7 @@ public class Demon : Ennemy
             LastKnownPlayerPosition = hit.transform.position;
             detected = true;
         }
-        Debug.Log(hit.distance + "    " + transform.position);
+        //Debug.Log(hit.distance + "    " + transform.position);
         return detected;
     }
 }
