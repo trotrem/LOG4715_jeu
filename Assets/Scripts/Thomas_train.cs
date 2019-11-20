@@ -116,7 +116,7 @@ public class Thomas_train : MonoBehaviour
 
         if (lives <= 0)
         {
-            canvas.transform.Find("canvas_win").gameObject.SetActive(true);
+            canvas.gameObject.SetActive(true);
             Time.timeScale = 0;
         }
     }
