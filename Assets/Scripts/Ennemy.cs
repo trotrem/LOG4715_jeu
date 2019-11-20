@@ -13,7 +13,7 @@ public class Ennemy : MonoBehaviour {
     MeshRenderer renderer;
 
     // Use this for initialization
-    void Start () {
+    protected void Start () {
         livesleft = lives;
         renderer = GetComponent<MeshRenderer>();
 	}
@@ -25,10 +25,11 @@ public class Ennemy : MonoBehaviour {
 
     internal void Hit(int damage)
     {
-        renderer.material.color = Color.red;
+        
         livesleft -= damage;
         if (livesleft <= 0)
         {
+            Debug.Log(livesleft +  " " + damage);
             Destroy(this.gameObject);
         }
     }
