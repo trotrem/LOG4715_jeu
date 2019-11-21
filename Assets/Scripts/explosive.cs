@@ -9,6 +9,8 @@ public class explosive : MonoBehaviour
     MeshRenderer mesh_renderer;
     public float explosionTimer = 3f;
     public float dammageTimer = 0.1f;
+
+    public float startTimer = 0.01f;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,6 +20,7 @@ public class explosive : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        startTimer -= Time.deltaTime;
         if(exploded){
             explosionTimer -= Time.deltaTime;
             dammageTimer -= Time.deltaTime;
@@ -34,7 +37,7 @@ public class explosive : MonoBehaviour
 
     void OnCollisionEnter(Collision c)
     {
-        if(!exploded)
+        if(startTimer <= 0 && !exploded)
         {
             this.explode();
         }
