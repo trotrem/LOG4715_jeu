@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class HealthManager : MonoBehaviour
 {
     [SerializeField]
@@ -103,6 +103,7 @@ public class HealthManager : MonoBehaviour
             respawnPoint = initialSpawnPoint;
             canvas.transform.Find("GameOver").gameObject.SetActive(true);
             Time.timeScale = 0;
+            
         }
     }
 }

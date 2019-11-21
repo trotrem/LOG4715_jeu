@@ -23,7 +23,7 @@ public class Thomas_train : MonoBehaviour
     private float lerpTimeRotation = 25;
     private float currentLerpTimeRotation = 0;
 
-    static public bool start = false;
+    public bool start = false;
     private int state = 0;
     [SerializeField]
     public LayerMask WhatIsHurt;

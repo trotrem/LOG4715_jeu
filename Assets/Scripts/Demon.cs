@@ -34,6 +34,7 @@ public class Demon : Ennemy
     protected new void Start()
     {
         base.Start();
+        GetComponents<AudioSource>()[0].Play();
         detected = false;
         _Flipped = false;
     }
@@ -89,8 +90,8 @@ public class Demon : Ennemy
         bool nearEdge = false;
         RaycastHit hitGround;
         RaycastHit hitWall;
-        Physics.Raycast(transform.position, new Vector3(0.0f, -transform.up.y, 5*transform.forward.z), out hitGround, 5.0f, WhatIsGround);
-        Physics.Raycast(transform.position, new Vector3(0.0f, 1.0f, 5 * transform.forward.z), out hitWall, 100.0f, WhatIsGround);
+        Physics.Raycast(transform.position, new Vector3(0.0f, -transform.up.y, 5*transform.forward.z), out hitGround, 10.0f, WhatIsGround);
+        Physics.Raycast(transform.position, new Vector3(0.0f, 0.0f, 5 * transform.forward.z), out hitWall, 100.0f, WhatIsGround);
         if (hitGround.distance > 2.0f || hitWall.distance < 2.0f)
         {
             nearEdge = true;
@@ -108,8 +109,8 @@ public class Demon : Ennemy
         {
             LastKnownPlayerPosition = hit.transform.position;
             detected = true;
+            GetComponents<AudioSource>()[1].Play();
         }
-        //Debug.Log(hit.distance + "    " + transform.position);
         return detected;
     }
 }
