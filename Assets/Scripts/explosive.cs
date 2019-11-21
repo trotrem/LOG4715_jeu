@@ -68,5 +68,6 @@ public class explosive : MonoBehaviour
         gameObject.GetComponent<Rigidbody>().isKinematic = true;
         gameObject.GetComponent<BoxCollider>().enabled = false;
         gameObject.GetComponent<CapsuleCollider>().enabled = true;
+        GetComponent<AudioSource>().Play();
     }
 }

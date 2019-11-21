@@ -101,6 +101,13 @@ public class PlayerControler : MonoBehaviour
     // Gère le mouvement horizontal
     void HorizontalMove(float horizontal)
     {
+        if (horizontal == 0)
+        {
+            GetComponents<AudioSource>()[0].Pause();
+        } else if (_Grounded)
+        {
+            GetComponents<AudioSource>()[0].UnPause();
+        }
 
         float control = gradualControl == 0 ? 1f : -timeLeftUncontrolable / gradualControl;
         _Rb.velocity = new Vector3(_Rb.velocity.x, _Rb.velocity.y, (control*horizontal)+(_Rb.velocity.z*(1-control)));
@@ -114,6 +121,8 @@ public class PlayerControler : MonoBehaviour
         {
             if (Input.GetButtonDown("Jump"))
             {
+                GetComponents<AudioSource>()[0].Pause();
+                GetComponents<AudioSource>()[1].Play();
                 _Rb.isKinematic = false;
                 _Rb.AddForce(new Vector3(0, JumpForce, 0), ForceMode.Impulse);
                 _Grounded = false;

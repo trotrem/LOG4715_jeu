@@ -27,10 +27,12 @@ public class Thomas_train : MonoBehaviour
     private int state = 0;
     [SerializeField]
     public LayerMask WhatIsHurt;
+    private float startTime;
 
     // Start is called before the first frame update
     void Start()
     {
+        startTime = Time.time;
         startPos = thomas.transform.position;
         endPos = thomas.transform.position + Vector3.back * distance;
     }
@@ -40,7 +42,7 @@ public class Thomas_train : MonoBehaviour
     {
         if (start)
         {
-            if (Time.time > nextActionTime)
+            if (Time.time - startTime > nextActionTime)
             {
                 nextActionTime += period;
                 // execute block of code here

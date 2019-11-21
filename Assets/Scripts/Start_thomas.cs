@@ -22,8 +22,8 @@ public class Start_thomas : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            GetComponent<AudioSource>().Play();
             Thomas_train.start = true;
-            
         }
         
     }
