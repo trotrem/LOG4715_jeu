@@ -37,6 +37,8 @@ public class HealthManager : MonoBehaviour
     Vector3 initialSpawnPoint;
     Vector3 respawnPoint;
 
+    public bool respawnActivated = true;
+
 
     // Use this for initialization
     void Start () {
@@ -87,7 +89,15 @@ public class HealthManager : MonoBehaviour
 
         if (livesLeft > 0)
         {
-            transform.SetPositionAndRotation(respawnPoint, transform.rotation);
+            if(respawnActivated)
+            {
+                transform.SetPositionAndRotation(respawnPoint, transform.rotation);
+                CameraScript.Shake(0.15f, 0.1f);
+            }
+            else
+            {
+                CameraScript.Shake(0.2f, 0.3f);
+            }
         } else
         {
             respawnPoint = initialSpawnPoint;

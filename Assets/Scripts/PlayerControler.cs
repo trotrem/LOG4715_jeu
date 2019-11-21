@@ -71,6 +71,8 @@ public class PlayerControler : MonoBehaviour
     void Update()
     {
         var horizontal = Input.GetAxis("Horizontal") * MoveSpeed;
+        Vector3 camPos = new Vector3(transform.position.x + 10, transform.position.y + 1, transform.position.z);
+        CameraScript.move(camPos);
 
         if(timeLeftUncontrolable > -gradualControl) 
         {
@@ -139,15 +141,11 @@ public class PlayerControler : MonoBehaviour
         {
             _Flipped = true;
             transform.RotateAround(transform.position, new Vector3(0,1,0), 180);
-            _MainCamera.transform.Rotate(-FlipRotation);
-            _MainCamera.transform.localPosition = InverseCameraPosition;
         }
         else if (horizontal > 0 && _Flipped)
         {
             _Flipped = false;
             transform.RotateAround(transform.position, new Vector3(0, 1, 0), -180);
-            _MainCamera.transform.Rotate(FlipRotation);
-            _MainCamera.transform.localPosition = CameraPosition;
         }
     }
 

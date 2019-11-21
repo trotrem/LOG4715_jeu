@@ -22,8 +22,10 @@ public class Start_thomas : MonoBehaviour
     {
         if (collider.gameObject.tag == "Player")
         {
+            collider.GetComponent<HealthManager>().respawnActivated = false;
             GetComponent<AudioSource>().Play();
             Thomas_train.start = true;
+            CameraScript.SetupForBoss();
         }
         
     }
