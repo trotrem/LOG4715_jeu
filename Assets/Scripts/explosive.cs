@@ -17,6 +17,10 @@ public class explosive : MonoBehaviour
         mesh_renderer = GetComponent<MeshRenderer>();
     }
 
+    void FixedUpdate()
+    {
+        GetComponent<Rigidbody>().AddForce(Vector3.up * 9);
+    }
     // Update is called once per frame
     void Update()
     {

@@ -113,6 +113,9 @@ MonoBehaviour:
   WhatIsEnemy:
     serializedVersion: 2
     m_Bits: 1024
+  WhatIsBounce:
+    serializedVersion: 2
+    m_Bits: 131072
   maxForce: 800
   stuck: 0
   WhatIsSticking:

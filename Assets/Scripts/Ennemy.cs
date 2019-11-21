@@ -29,7 +29,6 @@ public class Ennemy : MonoBehaviour {
         livesleft -= damage;
         if (livesleft <= 0)
         {
-            Debug.Log(livesleft +  " " + damage);
             Destroy(this.gameObject);
         }
     }

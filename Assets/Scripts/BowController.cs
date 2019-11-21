@@ -27,7 +27,7 @@ public class BowController : MonoBehaviour {
     GameObject ArrowSelectionGUI;
 
     [SerializeField]
-    float capsuleRadius = 1f;
+    float capsuleRadius = 1.25f;
 
     [SerializeField]
     float forceLength = 10f;
@@ -256,7 +256,7 @@ public class BowController : MonoBehaviour {
                 if (objectPushed != null)
                 {
                     Vector3 pushDirection = objectPushed.transform.position - transform.parent.position;
-                    objectPushed.AddForce(pushDirection.normalized * KnockBackForce * forcePercentage * hitColliders[i].gameObject.GetComponent<Rigidbody>().mass, ForceMode.Impulse);
+                    objectPushed.velocity = pushDirection.normalized * KnockBackForce;
                 }  
                 i++;
             }

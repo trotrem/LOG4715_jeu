@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6150506786469202491}
   - component: {fileID: 8861776824131002625}
   - component: {fileID: 1246475531}
-  m_Layer: 0
+  m_Layer: 16
   m_Name: TNT Dinamite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -157,6 +157,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
     - target: {fileID: 4000010212820824, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -210,6 +214,34 @@ PrefabInstance:
         type: 3}
       propertyPath: LightsModule.light
       value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000012348499044, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000013371323466, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011298463270, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000010336741610, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1108256732129644, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000014207458990, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+      propertyPath: m_Layer
+      value: 16
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000011796581256, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}
+      propertyPath: m_Layer
+      value: 16
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: acf39d9f4addf294d93fa56fa373961b, type: 3}

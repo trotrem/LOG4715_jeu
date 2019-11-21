@@ -16,7 +16,7 @@ public class Bomb_trajectory : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if(trajectoire <= 0)
         {

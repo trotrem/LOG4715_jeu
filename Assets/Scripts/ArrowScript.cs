@@ -8,6 +8,10 @@ public abstract class ArrowScript : MonoBehaviour {
     [SerializeField]
     LayerMask WhatIsEnemy;
 
+
+    [SerializeField]
+    LayerMask WhatIsBounce;
+
     [SerializeField]
     float maxForce = 800f;
 
@@ -58,6 +62,12 @@ public abstract class ArrowScript : MonoBehaviour {
 
     protected virtual void OnTriggerEnter(Collider coll)
     {
+        if (!stuck && (WhatIsBounce & (1 << coll.gameObject.layer)) != 0)
+        {
+            Bounce();
+            return;
+        }
+
         if (!stuck && (getWhatIsSticking() & (1 << coll.gameObject.layer)) != 0)
         {
             if (lifespan < 0.1)

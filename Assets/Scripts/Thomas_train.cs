@@ -25,6 +25,8 @@ public class Thomas_train : MonoBehaviour
 
     static public bool start = false;
     private int state = 0;
+    [SerializeField]
+    public LayerMask WhatIsHurt;
 
     // Start is called before the first frame update
     void Start()
@@ -101,12 +103,15 @@ public class Thomas_train : MonoBehaviour
 
     public void spawnBomb()
     {
-        Instantiate(bomb, this.transform.position - Vector3.up * 2, this.transform.rotation);
+        Instantiate(bomb, this.transform.position - Vector3.up * 2.5f , this.transform.rotation);
     }
 
     //quand thomas se fait attaquer par une bombe
     void OnCollisionEnter(Collision coll)
     {
+        if ((WhatIsHurt & (1 << coll.gameObject.layer)) == 0)
+            return;
+
         LooseLife();
     }
 

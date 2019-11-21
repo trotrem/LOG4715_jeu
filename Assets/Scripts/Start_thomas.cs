@@ -23,6 +23,7 @@ public class Start_thomas : MonoBehaviour
         if (collider.gameObject.tag == "Player")
         {
             Thomas_train.start = true;
+            
         }
         
     }
